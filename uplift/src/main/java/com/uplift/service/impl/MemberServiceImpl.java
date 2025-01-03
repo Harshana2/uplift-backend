@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
 
+    @Override
     public Member saveMember(Member member) {
         if (member.getMemberId() == null || member.getMemberId().isEmpty()) {
             long seqValue = sequenceGeneratorService.generateSequence("member_seq");
@@ -31,11 +32,6 @@ public class MemberServiceImpl implements MemberService {
         String encodedPassword = bCryptPasswordEncoder.encode(member.getPassword());
         member.setPassword(encodedPassword);
         return memberRepo.save(member);
-    }
-
-    private String generateUniqueId() {
-        // Example: Generate a UUID and return the first 8 characters
-        return "M" + UUID.randomUUID().toString().substring(0, 8);
     }
 
     @Override

@@ -32,7 +32,7 @@ public class MemberController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Member>> getAllEmployees() {
+    public ResponseEntity<List<Member>> getAllMembers() {
         List<Member> members = this.memberService.getAllMembers();
         return ResponseEntity.ok(members);
     }
@@ -44,7 +44,7 @@ public class MemberController {
     }
 
     @PutMapping({"/{id}"})
-    public ResponseEntity<Member> updateEmployee(@PathVariable String id, @RequestBody Member member) {
+    public ResponseEntity<Member> updateMember(@PathVariable String id, @RequestBody Member member) {
         Member updatedMember = this.memberService.updateMember(id, member);
         return updatedMember != null ? ResponseEntity.ok(updatedMember) :
                 ResponseEntity.notFound().build();
