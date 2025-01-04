@@ -10,6 +10,7 @@ import com.uplift.service.MemberService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {

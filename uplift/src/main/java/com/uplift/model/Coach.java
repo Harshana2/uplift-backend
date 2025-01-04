@@ -3,8 +3,11 @@ package com.uplift.model;
 public class Coach {
     private String coachId;
     private String fullName;
+    private String email;
     private int age;
     private int experience;
+    private String specialization;
+
     private String username;
     private String password;
 
@@ -55,4 +58,21 @@ public class Coach {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
 }

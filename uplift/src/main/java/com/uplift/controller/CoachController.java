@@ -11,11 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/coaches")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CoachController {
     @Autowired
     private CoachService coachService;
 
-    @PostMapping("/saveCoach")
+    @PostMapping("/signup")
     public ResponseEntity<Coach> saveCoach(@RequestBody Coach coach) {
         Coach createdCoach =
                 this.coachService.saveCoach(coach);
