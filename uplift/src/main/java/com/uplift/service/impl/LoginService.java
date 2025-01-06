@@ -29,19 +29,19 @@ public class LoginService {
 
         Admin admin = adminRepo.findByUsername(username);
         if (admin != null && bCryptPasswordEncoder.matches(password, admin.getPassword())) {
-            return new UserDTO(username, "ADMIN", admin.getAdminId());
+            return new UserDTO( "ADMIN",username, admin.getAdminId());
         }
 
         // Check Coach collection
         Coach coach = coachRepo.findByUsername(username);
         if (coach != null && bCryptPasswordEncoder.matches(password, coach.getPassword())) {
-            return new UserDTO(username, "COACH", coach.getCoachId());
+            return new UserDTO( "COACH",username, coach.getCoachId());
         }
 
         // Check Member collection
         Member member = memberRepo.findByUsername(username);
         if (member != null && bCryptPasswordEncoder.matches(password, member.getPassword())) {
-            return new UserDTO(username, "MEMBER", member.getMemberId());
+            return new UserDTO( "MEMBER",username, member.getMemberId());
         }
 
         // If no match is found
