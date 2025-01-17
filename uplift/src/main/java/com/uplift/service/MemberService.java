@@ -5,6 +5,7 @@ import com.uplift.model.Member;
 import java.util.List;
 
 public interface MemberService {
+
     Member saveMember(Member member);
 
     Member getMemberById(String id);
@@ -14,4 +15,6 @@ public interface MemberService {
     void deleteMember(String id);
 
     Member updateMember(String id, Member member);
+
+    String verifyMember(String token);
 }
