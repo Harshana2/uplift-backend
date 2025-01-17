@@ -21,6 +21,24 @@ public class Member {
     private String gender;
     private String username;
     private String password;
+    private byte[] profilePic;
+    private boolean verified;
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public byte[] getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(byte[] profilePic) {
+        this.profilePic = profilePic;
+    }
 
     public String getMemberId() {
         return memberId;

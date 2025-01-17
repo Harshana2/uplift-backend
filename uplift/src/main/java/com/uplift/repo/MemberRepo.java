@@ -5,4 +5,6 @@ import com.uplift.model.Member;
 
 public interface MemberRepo extends MongoRepository<Member, String> {
     Member findByUsername(String username);
+    Member findByEmail(String email);
+
 }
