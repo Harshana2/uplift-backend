@@ -4,6 +4,28 @@ import com.uplift.dto.UserDTO;
 import com.uplift.model.Admin;
 import com.uplift.model.Coach;
 import com.uplift.model.Member;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import com.uplift.repo.AdminRepo;
 import com.uplift.repo.CoachRepo;
 import com.uplift.repo.MemberRepo;
@@ -26,11 +48,14 @@ public class LoginService {
 
     public UserDTO login(String username, String password) {
         // Check Admin collection
-
         Admin admin = adminRepo.findByUsername(username);
-        if (admin != null && bCryptPasswordEncoder.matches(password, admin.getPassword())) {
-            return new UserDTO( "ADMIN",username, admin.getAdminId());
+
+        // If the admin exists and the password matches
+        if (admin != null && password.equals(admin.getPassword())) {
+            return new UserDTO("ADMIN", username, admin.getAdminId());
         }
+
+
 
         // Check Coach collection
         Coach coach = coachRepo.findByUsername(username);

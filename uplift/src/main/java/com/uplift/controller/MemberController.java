@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {
@@ -54,6 +54,12 @@ public class MemberController {
                 ResponseEntity.notFound().build();
     }
 
+
+    @GetMapping("/count")
+    public long getMemberCount() {
+        return memberService.getMemberCount();
+    }
+
     // New endpoint for email verification
     @GetMapping("/verify")
     public ResponseEntity<String> verifyMember(@RequestParam("token") String token) {
@@ -64,4 +70,6 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+
 }

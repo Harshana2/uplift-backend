@@ -17,4 +17,8 @@ public interface MemberService {
     Member updateMember(String id, Member member);
 
     String verifyMember(String token);
+
+    long getMemberCount();
+
+    public List<Member> getMembersAssignedToCoach(String coachId);
 }

@@ -1,7 +1,9 @@
 package com.uplift.controller;
 
 import com.uplift.model.Coach;
+import com.uplift.model.Member;
 import com.uplift.service.CoachService;
+import com.uplift.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,13 @@ public class CoachController {
     @Autowired
     private CoachService coachService;
 
+    @Autowired
+    private MemberService memberService;
+
     @PostMapping("/signup")
     public ResponseEntity<Coach> saveCoach(@RequestBody Coach coach) {
         Coach createdCoach =
-                this.coachService.saveCoach(coach);
+                coachService.saveCoach(coach);
         return ResponseEntity.ok(createdCoach);
 
 
@@ -34,6 +39,12 @@ public class CoachController {
         List<Coach> coaches = this.coachService.getAllCoaches();
         return ResponseEntity.ok(coaches);
     }
+    @GetMapping("/{coachId}/assigned-members")
+    public List<Member> getAssignedMembers(@PathVariable String coachId) {
+        // Fetch the list of members assigned to the specified coach
+        return memberService.getMembersAssignedToCoach(coachId);
+    }
+
 
     @DeleteMapping({"/{id}"})
     public ResponseEntity<String> deleteCoach(@PathVariable String id) {

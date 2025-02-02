@@ -21,7 +21,7 @@ public class Member {
     private String gender;
     private String username;
     private String password;
-    private byte[] profilePic;
+    private String coachId;
     private boolean verified;
 
     public boolean isVerified() {
@@ -32,13 +32,6 @@ public class Member {
         this.verified = verified;
     }
 
-    public byte[] getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(byte[] profilePic) {
-        this.profilePic = profilePic;
-    }
 
     public String getMemberId() {
         return memberId;
@@ -90,6 +83,14 @@ public class Member {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getCoachId() {
+        return coachId;
+    }
+
+    public void setCoachId(String coachId) {
+        this.coachId = coachId;
     }
 
     public void setPassword(String password) {

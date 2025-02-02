@@ -1,5 +1,6 @@
 package com.uplift.service.impl;
 
+import com.uplift.exception.UsernameAlreadyExistsException;
 import com.uplift.model.Member;
 import com.uplift.model.VerificationToken;
 import com.uplift.repo.MemberRepo;
@@ -33,6 +34,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member saveMember(Member member) {
+        if (memberRepo.existsByUsername(member.getUsername())) {
+            throw new UsernameAlreadyExistsException("Username already exists: " + member.getUsername());
+        }
+
         // Generate custom ID if not present
         if (member.getMemberId() == null || member.getMemberId().isEmpty()) {
             long seqValue = sequenceGeneratorService.generateSequence("member_seq");
@@ -82,6 +87,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public long getMemberCount() {
+        return memberRepo.count();
+    }
+
+    @Override
     public Member updateMember(String id, Member member) {
         if (memberRepo.existsById(id)) {
             member.setMemberId(id);
@@ -122,5 +132,10 @@ public class MemberServiceImpl implements MemberService {
         message.setSubject("Verify Your Email");
         message.setText("Click the link below to verify your email:\n" + verificationLink);
         mailSender.send(message);
+    }
+
+    public List<Member> getMembersAssignedToCoach(String coachId) {
+        // Fetch and return the members assigned to the coach by coachId
+        return memberRepo.findByCoachId(coachId);
     }
 }

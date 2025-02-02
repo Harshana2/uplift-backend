@@ -1,6 +1,7 @@
 package com.uplift.service;
 
 import com.uplift.model.Coach;
+import com.uplift.model.Status;
 
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface CoachService {
     void deleteCoach(String id);
 
     Coach updateCoach(String id, Coach coach);
+    public boolean updateCoachStatus(String coachId, Status status);
 }

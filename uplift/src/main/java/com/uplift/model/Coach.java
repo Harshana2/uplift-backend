@@ -1,7 +1,22 @@
 package com.uplift.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Getter
+@Setter
+@Data
+@Document(collection = "coach")
 public class Coach {
+    @Id
     private String coachId;
+
     private String fullName;
     private String email;
     private int age;
@@ -11,12 +26,22 @@ public class Coach {
     private String username;
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
     public String getCoachId() {
         return coachId;
     }
 
     public void setCoachId(String coachId) {
         this.coachId = coachId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getFullName() {

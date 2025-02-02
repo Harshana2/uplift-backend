@@ -60,8 +60,13 @@
 			<artifactId>spring-security-crypto</artifactId>
 			<version>6.4.1</version>
 		</dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>2.2.3</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
