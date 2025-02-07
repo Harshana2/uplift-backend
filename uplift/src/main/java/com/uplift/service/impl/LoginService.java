@@ -6,26 +6,7 @@ import com.uplift.model.Coach;
 import com.uplift.model.Member;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import com.uplift.model.Status;
 import com.uplift.repo.AdminRepo;
 import com.uplift.repo.CoachRepo;
 import com.uplift.repo.MemberRepo;
@@ -59,13 +40,13 @@ public class LoginService {
 
         // Check Coach collection
         Coach coach = coachRepo.findByUsername(username);
-        if (coach != null && bCryptPasswordEncoder.matches(password, coach.getPassword())) {
+        if (coach != null && bCryptPasswordEncoder.matches(password, coach.getPassword()) && coach.getStatus()==Status.APPROVED) {
             return new UserDTO( "COACH",username, coach.getCoachId());
         }
 
         // Check Member collection
         Member member = memberRepo.findByUsername(username);
-        if (member != null && bCryptPasswordEncoder.matches(password, member.getPassword())) {
+        if (member != null && bCryptPasswordEncoder.matches(password, member.getPassword())&& member.isVerified()==true) {
             return new UserDTO( "MEMBER",username, member.getMemberId());
         }
 
